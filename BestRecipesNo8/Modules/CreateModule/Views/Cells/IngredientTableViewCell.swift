@@ -96,9 +96,9 @@ class IngredientTableViewCell: UITableViewCell {
     
     // MARK: - Configure Cell
     
-//    func configureCell(for indexPath: IndexPath) {
-//
-//    }
+    func configureCell(for indexPath: IndexPath) {
+        deleteIngredientButton.tag = indexPath.row
+    }
 //    
 //    @objc func deleteIngredientButtonTapped() {
 //        print(#function)

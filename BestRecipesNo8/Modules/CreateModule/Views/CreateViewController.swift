@@ -34,8 +34,6 @@ class CreateViewController: UIViewController {
         return button
     }()
     
-    // Recipe Information
-    
     private lazy var titleRecipe: CreateTextField = {
         let tf = CreateTextField()
         tf.placeholder = "Enter recipe title "
@@ -53,7 +51,6 @@ class CreateViewController: UIViewController {
     
     private lazy var tableView: UITableView = {
         let tableView = UITableView()
-#warning("ДОРАБОТАТЬ")
         tableView.register(IngredientTableViewCell.self, forCellReuseIdentifier: IngredientTableViewCell.cellID)
         tableView.register(AddIngredientTableViewCell.self, forCellReuseIdentifier: AddIngredientTableViewCell.cellID)
         tableView.register(IngredientHeaderView.self, forHeaderFooterViewReuseIdentifier: IngredientHeaderView.reuseID)
@@ -77,6 +74,9 @@ class CreateViewController: UIViewController {
         return button
     }()
         
+    // MARK: - Properties For Realm
+    
+    private var titleNewRecipe = ""
     private var ingredients: [String: String] = [:]
     
     // MARK: - Life View Cycle
@@ -84,7 +84,7 @@ class CreateViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        IQKeyboardManager.shared.enable = true
+//        IQKeyboardManager.shared.enable = true
     }
     
     // MARK: - Private Methods
@@ -183,6 +183,15 @@ class CreateViewController: UIViewController {
         }
     }
     
+    @objc func deleteIngredientButtonTapped(_ sender: UIButton) {
+        print(sender.tag)
+        if (ingredients.count + 2) != 2 {
+            let index = sender.tag
+            let indexPath = IndexPath(row: index, section: 0)
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+        }
+    }
+    
 }
 
 // MARK: - UITableViewDataSource
@@ -206,8 +215,9 @@ extension CreateViewController: UITableViewDataSource {
             guard let ingredientCell = tableView.dequeueReusableCell(withIdentifier: IngredientTableViewCell.cellID, for: indexPath) as? IngredientTableViewCell
             else { return UITableViewCell() }
             
+            ingredientCell.configureCell(for: indexPath)
+            ingredientCell.deleteIngredientButton.addTarget(self, action: #selector(deleteIngredientButtonTapped), for: .touchUpInside)
             ingredientCell.selectionStyle = .none
-            
             ingredientCell.nameIngredient.delegate = self
             ingredientCell.quantityIngredient.delegate = self
             
@@ -260,6 +270,20 @@ extension CreateViewController: UITextFieldDelegate {
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
         print(#function + "\(textField)")
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        print(textField.placeholder)
+//        if let text = textField.text, !text.isEmpty {
+//            switch textField {
+//            case titleRecipe:
+//                titleNewRecipe = text
+//            default:
+//                print("EMPTY")
+//            }
+//        } else {
+//            showAlert(title: "Warning!", message: "Enter recipe information")
+//        }
     }
 }
 
