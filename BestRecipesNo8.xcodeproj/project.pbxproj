@@ -24,6 +24,17 @@
 		283A2D642A9D33A200A70257 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 283A2D632A9D33A200A70257 /* Constants.swift */; };
 		283A2D662A9D33B400A70257 /* RandomRecipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 283A2D652A9D33B400A70257 /* RandomRecipe.swift */; };
 		283A2D682A9D33C600A70257 /* SearchRecipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 283A2D672A9D33C600A70257 /* SearchRecipe.swift */; };
+		283CE41D2AA27BEE00BD02ED /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 283CE41C2AA27BEE00BD02ED /* Realm */; };
+		283CE41F2AA27BEE00BD02ED /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 283CE41E2AA27BEE00BD02ED /* RealmSwift */; };
+		283CE4212AA27C6700BD02ED /* RecipeInfoRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 283CE4202AA27C6700BD02ED /* RecipeInfoRealm.swift */; };
+		283CE4292AA3737B00BD02ED /* CreateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 283CE4282AA3737B00BD02ED /* CreateViewController.swift */; };
+		283CE42B2AA378E900BD02ED /* CreateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 283CE42A2AA378E900BD02ED /* CreateView.swift */; };
+		283CE42E2AA3870C00BD02ED /* IngredientTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 283CE42D2AA3870C00BD02ED /* IngredientTableViewCell.swift */; };
+		283CE4322AA3A4E600BD02ED /* AddIngredientTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 283CE4312AA3A4E600BD02ED /* AddIngredientTableViewCell.swift */; };
+		283CE4342AA3AD1A00BD02ED /* CreateTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 283CE4332AA3AD1A00BD02ED /* CreateTextField.swift */; };
+		2841369E2AA3C89A00955038 /* AlertController + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2841369D2AA3C89A00955038 /* AlertController + Extension.swift */; };
+		284136A12AA3D48F00955038 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 284136A02AA3D48F00955038 /* IQKeyboardManagerSwift */; };
+		284136A32AA4A09700955038 /* IngredientHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 284136A22AA4A09700955038 /* IngredientHeaderView.swift */; };
 		90D5FE6A2AA0B26F002A74B0 /* CustomNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D5FE692AA0B26F002A74B0 /* CustomNavigationController.swift */; };
 		90D5FE7A2AA0B295002A74B0 /* RecipeViewRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D5FE6D2AA0B295002A74B0 /* RecipeViewRouter.swift */; };
 		90D5FE7B2AA0B295002A74B0 /* RecipeRouterInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D5FE6E2AA0B295002A74B0 /* RecipeRouterInput.swift */; };
@@ -86,6 +97,14 @@
 		283A2D632A9D33A200A70257 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		283A2D652A9D33B400A70257 /* RandomRecipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomRecipe.swift; sourceTree = "<group>"; };
 		283A2D672A9D33C600A70257 /* SearchRecipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRecipe.swift; sourceTree = "<group>"; };
+		283CE4202AA27C6700BD02ED /* RecipeInfoRealm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeInfoRealm.swift; sourceTree = "<group>"; };
+		283CE4282AA3737B00BD02ED /* CreateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateViewController.swift; sourceTree = "<group>"; };
+		283CE42A2AA378E900BD02ED /* CreateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateView.swift; sourceTree = "<group>"; };
+		283CE42D2AA3870C00BD02ED /* IngredientTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientTableViewCell.swift; sourceTree = "<group>"; };
+		283CE4312AA3A4E600BD02ED /* AddIngredientTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddIngredientTableViewCell.swift; sourceTree = "<group>"; };
+		283CE4332AA3AD1A00BD02ED /* CreateTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTextField.swift; sourceTree = "<group>"; };
+		2841369D2AA3C89A00955038 /* AlertController + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AlertController + Extension.swift"; sourceTree = "<group>"; };
+		284136A22AA4A09700955038 /* IngredientHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientHeaderView.swift; sourceTree = "<group>"; };
 		90D5FE692AA0B26F002A74B0 /* CustomNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomNavigationController.swift; sourceTree = "<group>"; };
 		90D5FE6D2AA0B295002A74B0 /* RecipeViewRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeViewRouter.swift; sourceTree = "<group>"; };
 		90D5FE6E2AA0B295002A74B0 /* RecipeRouterInput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeRouterInput.swift; sourceTree = "<group>"; };
@@ -135,6 +154,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				284136A12AA3D48F00955038 /* IQKeyboardManagerSwift in Frameworks */,
+				283CE41F2AA27BEE00BD02ED /* RealmSwift in Frameworks */,
+				283CE41D2AA27BEE00BD02ED /* Realm in Frameworks */,
 				E1C979072A9B83CC003BDC4A /* Kingfisher in Frameworks */,
 				E1C978FF2A9B7274003BDC4A /* SnapKit in Frameworks */,
 			);
@@ -215,8 +237,68 @@
 				283A2D632A9D33A200A70257 /* Constants.swift */,
 				283A2D652A9D33B400A70257 /* RandomRecipe.swift */,
 				283A2D672A9D33C600A70257 /* SearchRecipe.swift */,
+				283CE4202AA27C6700BD02ED /* RecipeInfoRealm.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		283CE4222AA3730700BD02ED /* CreateModule */ = {
+			isa = PBXGroup;
+			children = (
+				283CE4262AA3734300BD02ED /* Routers */,
+				283CE4272AA3734C00BD02ED /* Builders */,
+				283CE4232AA3732500BD02ED /* Models */,
+				283CE4242AA3732D00BD02ED /* Views */,
+				283CE4252AA3733200BD02ED /* Presenters */,
+			);
+			path = CreateModule;
+			sourceTree = "<group>";
+		};
+		283CE4232AA3732500BD02ED /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		283CE4242AA3732D00BD02ED /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				283CE42C2AA386EC00BD02ED /* Cells */,
+				283CE4282AA3737B00BD02ED /* CreateViewController.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		283CE4252AA3733200BD02ED /* Presenters */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Presenters;
+			sourceTree = "<group>";
+		};
+		283CE4262AA3734300BD02ED /* Routers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Routers;
+			sourceTree = "<group>";
+		};
+		283CE4272AA3734C00BD02ED /* Builders */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Builders;
+			sourceTree = "<group>";
+		};
+		283CE42C2AA386EC00BD02ED /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				283CE42D2AA3870C00BD02ED /* IngredientTableViewCell.swift */,
+				283CE4312AA3A4E600BD02ED /* AddIngredientTableViewCell.swift */,
+				284136A22AA4A09700955038 /* IngredientHeaderView.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		90D5FE6B2AA0B295002A74B0 /* RecipeModule */ = {
@@ -353,6 +435,7 @@
 				28344DAD2A9E5519000D7554 /* UILabel + Extension.swift */,
 				28344DC32A9F72B4000D7554 /* UIImage + Extension.swift */,
 				E1ABBEAC2A9DEFF70021E624 /* UIImage + TabBar.swift */,
+				2841369D2AA3C89A00955038 /* AlertController + Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -474,6 +557,8 @@
 			isa = PBXGroup;
 			children = (
 				E1ABBEB72AA059EE0021E624 /* CustomButton.swift */,
+				283CE42A2AA378E900BD02ED /* CreateView.swift */,
+				283CE4332AA3AD1A00BD02ED /* CreateTextField.swift */,
 			);
 			path = CustomUI;
 			sourceTree = "<group>";
@@ -540,6 +625,7 @@
 				E11675A22A9BFC6B00C6ED88 /* HomeModule */,
 				28344DA82A9E54A9000D7554 /* SeeAllModule */,
 				90D5FE6B2AA0B295002A74B0 /* RecipeModule */,
+				283CE4222AA3730700BD02ED /* CreateModule */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -563,6 +649,9 @@
 			packageProductDependencies = (
 				E1C978FE2A9B7274003BDC4A /* SnapKit */,
 				E1C979062A9B83CC003BDC4A /* Kingfisher */,
+				283CE41C2AA27BEE00BD02ED /* Realm */,
+				283CE41E2AA27BEE00BD02ED /* RealmSwift */,
+				284136A02AA3D48F00955038 /* IQKeyboardManagerSwift */,
 			);
 			productName = BestRecipesNo8;
 			productReference = E1C978E32A9B5A09003BDC4A /* BestRecipesNo8.app */;
@@ -595,6 +684,8 @@
 			packageReferences = (
 				E1C978FD2A9B7274003BDC4A /* XCRemoteSwiftPackageReference "SnapKit" */,
 				E1C979052A9B83CC003BDC4A /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				283CE41B2AA27BEE00BD02ED /* XCRemoteSwiftPackageReference "realm-swift" */,
+				2841369F2AA3D48F00955038 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
 			);
 			productRefGroup = E1C978E42A9B5A09003BDC4A /* Products */;
 			projectDirPath = "";
@@ -632,12 +723,14 @@
 				E116759A2A9BF55300C6ED88 /* Colors + Extension.swift in Sources */,
 				28344DBC2A9E7955000D7554 /* SeeAllBuilder.swift in Sources */,
 				E11675B52A9C843800C6ED88 /* StartBuilder.swift in Sources */,
+				283CE4342AA3AD1A00BD02ED /* CreateTextField.swift in Sources */,
 				E1C978E72A9B5A09003BDC4A /* AppDelegate.swift in Sources */,
 				E11675B92A9C847F00C6ED88 /* StartViewOutput.swift in Sources */,
 				90D5FE942AA0E1AE002A74B0 /* TabBarModel.swift in Sources */,
 				E116755E2A9BBA5000C6ED88 /* Router.swift in Sources */,
 				E11675B72A9C845E00C6ED88 /* StartView.swift in Sources */,
 				E11675B32A9C840500C6ED88 /* StartViewRouter.swift in Sources */,
+				283CE4322AA3A4E600BD02ED /* AddIngredientTableViewCell.swift in Sources */,
 				E1ABBEAB2A9DEDB50021E624 /* OnboardingConstants.swift in Sources */,
 				E11675B12A9C83E700C6ED88 /* StartRouterInput.swift in Sources */,
 				90D5FE7F2AA0B295002A74B0 /* RecipeView.swift in Sources */,
@@ -646,6 +739,7 @@
 				28344DAE2A9E5519000D7554 /* UILabel + Extension.swift in Sources */,
 				E11675BB2A9C849400C6ED88 /* StartViewInput.swift in Sources */,
 				283A2D642A9D33A200A70257 /* Constants.swift in Sources */,
+				2841369E2AA3C89A00955038 /* AlertController + Extension.swift in Sources */,
 				28344DB32A9E5598000D7554 /* SeeAllViewController.swift in Sources */,
 				90D5FE6A2AA0B26F002A74B0 /* CustomNavigationController.swift in Sources */,
 				90D5FE8D2AA0BAA4002A74B0 /* TabBarPresenter.swift in Sources */,
@@ -656,6 +750,7 @@
 				E1ABBEB82AA059EE0021E624 /* CustomButton.swift in Sources */,
 				90D5FE822AA0B295002A74B0 /* IngredientCell.swift in Sources */,
 				90D5FE7D2AA0B295002A74B0 /* RecipeModel.swift in Sources */,
+				283CE42E2AA3870C00BD02ED /* IngredientTableViewCell.swift in Sources */,
 				E11675BE2A9C87B700C6ED88 /* SettingsManager.swift in Sources */,
 				E116759C2A9BF55B00C6ED88 /* UIFont + Extension.swift in Sources */,
 				E116755B2A9BB9F800C6ED88 /* ModuleBuilder.swift in Sources */,
@@ -663,12 +758,15 @@
 				283A2D5D2A9D334F00A70257 /* API.swift in Sources */,
 				90D5FE8B2AA0BA8F002A74B0 /* TabBarView.swift in Sources */,
 				283A2D682A9D33C600A70257 /* SearchRecipe.swift in Sources */,
+				283CE4292AA3737B00BD02ED /* CreateViewController.swift in Sources */,
 				28344DC02A9E79C5000D7554 /* SeeAllRouterInput.swift in Sources */,
 				28344DB82A9E78F9000D7554 /* SeeAllViewInput.swift in Sources */,
 				283A2D662A9D33B400A70257 /* RandomRecipe.swift in Sources */,
 				90D5FE7B2AA0B295002A74B0 /* RecipeRouterInput.swift in Sources */,
 				90D5FE8F2AA0BB55002A74B0 /* TabBarRouterInput.swift in Sources */,
+				283CE42B2AA378E900BD02ED /* CreateView.swift in Sources */,
 				28344DBE2A9E7988000D7554 /* SeeAllPresenter.swift in Sources */,
+				284136A32AA4A09700955038 /* IngredientHeaderView.swift in Sources */,
 				28344DB12A9E555D000D7554 /* SeeAllCollectionViewCell.swift in Sources */,
 				28344DC42A9F72B4000D7554 /* UIImage + Extension.swift in Sources */,
 				28344DBA2A9E7907000D7554 /* SeeAllViewOutput.swift in Sources */,
@@ -677,6 +775,7 @@
 				90D5FE912AA0BB62002A74B0 /* TabBarViewRouter.swift in Sources */,
 				E11675AF2A9C838300C6ED88 /* StartPresenter.swift in Sources */,
 				E1ABBEB02A9E09830021E624 /* CustomPageControl.swift in Sources */,
+				283CE4212AA27C6700BD02ED /* RecipeInfoRealm.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -892,6 +991,22 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		283CE41B2AA27BEE00BD02ED /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+		2841369F2AA3D48F00955038 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/hackiftekhar/IQKeyboardManager.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.0.0;
+			};
+		};
 		E1C978FD2A9B7274003BDC4A /* XCRemoteSwiftPackageReference "SnapKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SnapKit/SnapKit";
@@ -911,6 +1026,21 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		283CE41C2AA27BEE00BD02ED /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 283CE41B2AA27BEE00BD02ED /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = Realm;
+		};
+		283CE41E2AA27BEE00BD02ED /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 283CE41B2AA27BEE00BD02ED /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
+		};
+		284136A02AA3D48F00955038 /* IQKeyboardManagerSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2841369F2AA3D48F00955038 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */;
+			productName = IQKeyboardManagerSwift;
+		};
 		E1C978FE2A9B7274003BDC4A /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = E1C978FD2A9B7274003BDC4A /* XCRemoteSwiftPackageReference "SnapKit" */;
