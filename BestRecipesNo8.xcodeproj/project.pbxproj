@@ -33,7 +33,6 @@
 		283CE4322AA3A4E600BD02ED /* AddIngredientTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 283CE4312AA3A4E600BD02ED /* AddIngredientTableViewCell.swift */; };
 		283CE4342AA3AD1A00BD02ED /* CreateTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 283CE4332AA3AD1A00BD02ED /* CreateTextField.swift */; };
 		2841369E2AA3C89A00955038 /* AlertController + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2841369D2AA3C89A00955038 /* AlertController + Extension.swift */; };
-		284136A12AA3D48F00955038 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 284136A02AA3D48F00955038 /* IQKeyboardManagerSwift */; };
 		284136A32AA4A09700955038 /* IngredientHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 284136A22AA4A09700955038 /* IngredientHeaderView.swift */; };
 		90D5FE6A2AA0B26F002A74B0 /* CustomNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D5FE692AA0B26F002A74B0 /* CustomNavigationController.swift */; };
 		90D5FE7A2AA0B295002A74B0 /* RecipeViewRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D5FE6D2AA0B295002A74B0 /* RecipeViewRouter.swift */; };
@@ -154,7 +153,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				284136A12AA3D48F00955038 /* IQKeyboardManagerSwift in Frameworks */,
 				283CE41F2AA27BEE00BD02ED /* RealmSwift in Frameworks */,
 				283CE41D2AA27BEE00BD02ED /* Realm in Frameworks */,
 				E1C979072A9B83CC003BDC4A /* Kingfisher in Frameworks */,
@@ -651,7 +649,6 @@
 				E1C979062A9B83CC003BDC4A /* Kingfisher */,
 				283CE41C2AA27BEE00BD02ED /* Realm */,
 				283CE41E2AA27BEE00BD02ED /* RealmSwift */,
-				284136A02AA3D48F00955038 /* IQKeyboardManagerSwift */,
 			);
 			productName = BestRecipesNo8;
 			productReference = E1C978E32A9B5A09003BDC4A /* BestRecipesNo8.app */;
@@ -685,7 +682,6 @@
 				E1C978FD2A9B7274003BDC4A /* XCRemoteSwiftPackageReference "SnapKit" */,
 				E1C979052A9B83CC003BDC4A /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				283CE41B2AA27BEE00BD02ED /* XCRemoteSwiftPackageReference "realm-swift" */,
-				2841369F2AA3D48F00955038 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
 			);
 			productRefGroup = E1C978E42A9B5A09003BDC4A /* Products */;
 			projectDirPath = "";
@@ -999,14 +995,6 @@
 				kind = branch;
 			};
 		};
-		2841369F2AA3D48F00955038 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/hackiftekhar/IQKeyboardManager.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 6.0.0;
-			};
-		};
 		E1C978FD2A9B7274003BDC4A /* XCRemoteSwiftPackageReference "SnapKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SnapKit/SnapKit";
@@ -1035,11 +1023,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 283CE41B2AA27BEE00BD02ED /* XCRemoteSwiftPackageReference "realm-swift" */;
 			productName = RealmSwift;
-		};
-		284136A02AA3D48F00955038 /* IQKeyboardManagerSwift */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 2841369F2AA3D48F00955038 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */;
-			productName = IQKeyboardManagerSwift;
 		};
 		E1C978FE2A9B7274003BDC4A /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;

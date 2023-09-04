@@ -40,6 +40,10 @@ class CreateViewController: UIViewController {
         tf.layer.cornerRadius = 10
         tf.layer.borderColor = UIColor.red.cgColor
         tf.layer.borderWidth = 1
+        tf.tag = 3
+        tf.autocorrectionType = .no
+        tf.returnKeyType = .done
+        tf.smartInsertDeleteType = .no
         tf.delegate = self
         tf.translatesAutoresizingMaskIntoConstraints = false
         return tf
@@ -48,6 +52,14 @@ class CreateViewController: UIViewController {
     private lazy var servesView = CreateView()
     
     private lazy var cookTimeView = CreateView()
+    
+    private lazy var stackView: UIStackView = {
+        let stack = UIStackView()
+        stack.axis = .vertical
+        stack.spacing = 16
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        return stack
+    }()
     
     private lazy var tableView: UITableView = {
         let tableView = UITableView()
@@ -68,11 +80,13 @@ class CreateViewController: UIViewController {
         button.titleLabel?.font = UIFont.poppinsSemiBold(size: 16)
         button.layer.cornerRadius = 10
         button.backgroundColor = .primaryColor
-        button.isEnabled = false
+//        button.isEnabled = false
         button.addTarget(self, action: #selector(createRecipeButtonTapped), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
+    
+    private var activeTextField: UITextField? = nil
         
     // MARK: - Properties For Realm
     
@@ -84,7 +98,8 @@ class CreateViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-//        IQKeyboardManager.shared.enable = true
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     // MARK: - Private Methods
@@ -92,12 +107,21 @@ class CreateViewController: UIViewController {
     private func setupUI() {
         view.backgroundColor = .white
         
-        view.addSubview(imageView)
+        stackView.addArrangedSubview(imageView)
+        stackView.addArrangedSubview(titleRecipe)
+        stackView.addArrangedSubview(servesView)
+        servesView.congigureView(with: .serves, and: .serves)
+        stackView.addArrangedSubview(cookTimeView)
+        cookTimeView.congigureView(with: .cookTime, and: .cookTime)
+        view.addSubview(stackView)
         NSLayoutConstraint.activate([
-            imageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 12),
-            imageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            imageView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-            imageView.heightAnchor.constraint(equalToConstant: 200)
+            stackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 12),
+            stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            imageView.heightAnchor.constraint(equalToConstant: 200),
+            titleRecipe.heightAnchor.constraint(equalToConstant: 43.6),
+            servesView.heightAnchor.constraint(equalToConstant: 60),
+            cookTimeView.heightAnchor.constraint(equalToConstant: 60)
         ])
         
         imageView.addSubview(addImageButton)
@@ -106,32 +130,6 @@ class CreateViewController: UIViewController {
             addImageButton.heightAnchor.constraint(equalToConstant: 32),
             addImageButton.topAnchor.constraint(equalTo: imageView.topAnchor, constant: 8),
             addImageButton.trailingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: -8)
-        ])
-        
-        view.addSubview(titleRecipe)
-        NSLayoutConstraint.activate([
-            titleRecipe.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 16),
-            titleRecipe.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            titleRecipe.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-            titleRecipe.heightAnchor.constraint(equalToConstant: 43.6)
-        ])
-        
-        view.addSubview(servesView)
-        servesView.congigureView(with: .serves, and: .serves)
-        NSLayoutConstraint.activate([
-            servesView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            servesView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-            servesView.topAnchor.constraint(equalTo: titleRecipe.bottomAnchor, constant: 16),
-            servesView.heightAnchor.constraint(equalToConstant: 60)
-        ])
-        
-        view.addSubview(cookTimeView)
-        cookTimeView.congigureView(with: .cookTime, and: .cookTime)
-        NSLayoutConstraint.activate([
-            cookTimeView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            cookTimeView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-            cookTimeView.topAnchor.constraint(equalTo: servesView.bottomAnchor, constant: 16),
-            cookTimeView.heightAnchor.constraint(equalToConstant: 60)
         ])
         
         view.addSubview(createRecipeButton)
@@ -144,7 +142,7 @@ class CreateViewController: UIViewController {
         
         view.addSubview(tableView)
         NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: cookTimeView.bottomAnchor, constant: 0),
+            tableView.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 0),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
             tableView.bottomAnchor.constraint(equalTo: createRecipeButton.topAnchor, constant: -16)
@@ -165,6 +163,7 @@ class CreateViewController: UIViewController {
     
     @objc func createRecipeButtonTapped() {
         print(#function)
+//        saveInfoAboutIngredients()
     }
     
     @objc func servesViewButtonTapped() {
@@ -190,6 +189,34 @@ class CreateViewController: UIViewController {
             let indexPath = IndexPath(row: index, section: 0)
             tableView.deleteRows(at: [indexPath], with: .automatic)
         }
+    }
+    
+    // Keyboard
+    
+    @objc func keyboardWillShow(notification: NSNotification) {
+        
+        guard let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else {
+            return
+        }
+        
+        var shouldMoveViewUp = false
+        
+        if let activeTextField = activeTextField {
+            let bottomOfTextField = activeTextField.convert(activeTextField.bounds, to: view).maxY
+            let topOfKeyboard = view.frame.height - keyboardSize.height
+            
+            if bottomOfTextField > topOfKeyboard {
+                shouldMoveViewUp = true
+            }
+            
+            if shouldMoveViewUp {
+                view.frame.origin.y = 0 - keyboardSize.height
+            }
+        }
+    }
+    
+    @objc func keyboardWillHide(notification: NSNotification) {
+        view.frame.origin.y = 0
     }
     
 }
@@ -263,17 +290,82 @@ extension CreateViewController: UITableViewDelegate {
 
 extension CreateViewController: UITextFieldDelegate {
     
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+//        print(#function)
+        activeTextField = textField
+    }
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         print(#function)
+        
+        // название рецепта
+        if textField.tag == 3 {
+            guard let text = textField.text, !text.isEmpty else {
+                textField.resignFirstResponder()
+                showAlert(title: "Warning!", message: "Enter recipe name.")
+                return true
+            }
+            titleNewRecipe = text
+        }
+        
+        // название ингридиента
+        if textField.tag == 0 {
+            guard let text = textField.text, !text.isEmpty else {
+                textField.resignFirstResponder()
+                showAlert(title: "Warning!", message: "Enter ingredient name.")
+                return true
+            }
+            ingredients[text] = ""
+        }
+        
+        // количество ингридиента
+        if textField.tag == 1 {
+            guard let text = textField.text, !text.isEmpty else {
+                textField.resignFirstResponder()
+                showAlert(title: "Warning!", message: "Enter ingredient quantity.")
+                return true
+            }
+            guard let cell = textField.superview?.superview as? IngredientTableViewCell else { return true }
+            guard let table = cell.superview as? UITableView else { return true }
+            guard let indexPath = table.indexPath(for: cell) else { return true }
+            guard let ingredient = cell.nameIngredient.text else { return true }
+            print(ingredient)
+            ingredients[ingredient] = text
+        }
+        
+        
+        print("название рецепта: \(titleNewRecipe)")
+        print("ингридиенты: \(ingredients)")
+        
+        activeTextField = nil
+
+        view.endEditing(true)
         return true
     }
     
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        print(#function + "\(textField)")
+    private func saveInfoAboutIngredients() {
+        ingredients = [:]
+        let rows = tableView.numberOfRows(inSection: 0)
+        for row in 0..<rows {
+            let indexPath = IndexPath(row: row, section: 0)
+            guard let cell = tableView.cellForRow(at: indexPath) as? IngredientTableViewCell else { return }
+            if let ingerdient = cell.nameIngredient.text, let quantity = cell.quantityIngredient.text {
+                print("ingerdient: \(ingerdient)")
+                print("quantity: \(quantity)")
+                ingredients[ingerdient] = quantity
+            }
+        }
+        
+        print("new ingredients: \(ingredients)")
     }
+
     
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        print(textField.placeholder)
+//    func textFieldDidEndEditing(_ textField: UITextField) {
+//        print(#function)
+//        activeTextField = nil
+//        view.endEditing(true)
+//        print(textField.placeholder)
 //        if let text = textField.text, !text.isEmpty {
 //            switch textField {
 //            case titleRecipe:
@@ -284,7 +376,7 @@ extension CreateViewController: UITextFieldDelegate {
 //        } else {
 //            showAlert(title: "Warning!", message: "Enter recipe information")
 //        }
-    }
+//    }
 }
 
 // MARK: - UIImagePickerControllerDelegate & UINavigationControllerDelegate

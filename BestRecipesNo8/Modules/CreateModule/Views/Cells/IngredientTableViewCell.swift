@@ -21,6 +21,10 @@ class IngredientTableViewCell: UITableViewCell {
         tf.layer.cornerRadius = 10
         tf.layer.borderColor = UIColor.lightGray.cgColor
         tf.layer.borderWidth = 1
+        tf.autocorrectionType = .no
+        tf.returnKeyType = .next
+        tf.smartInsertDeleteType = .no
+        tf.adjustsFontSizeToFitWidth = true
         tf.tag = 0
         tf.translatesAutoresizingMaskIntoConstraints = false
         return tf
@@ -32,6 +36,10 @@ class IngredientTableViewCell: UITableViewCell {
         tf.layer.cornerRadius = 10
         tf.layer.borderColor = UIColor.lightGray.cgColor
         tf.layer.borderWidth = 1
+        tf.autocorrectionType = .no
+        tf.returnKeyType = .done
+        tf.smartInsertDeleteType = .no
+        tf.adjustsFontSizeToFitWidth = true
         tf.tag = 1
         tf.translatesAutoresizingMaskIntoConstraints = false
         return tf
