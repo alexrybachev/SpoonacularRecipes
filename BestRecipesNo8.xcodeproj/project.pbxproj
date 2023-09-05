@@ -440,6 +440,7 @@
 		E116755F2A9BBAEF00C6ED88 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				E1ABBEAE2A9E09570021E624 /* CustomUI */,
 				90D5FE692AA0B26F002A74B0 /* CustomNavigationController.swift */,
 				E11675992A9BF55300C6ED88 /* Colors + Extension.swift */,
 				E116759B2A9BF55B00C6ED88 /* UIFont + Extension.swift */,
@@ -464,7 +465,6 @@
 		E11675A02A9BF59B00C6ED88 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				E1ABBEAE2A9E09570021E624 /* CustomUI */,
 				E116759F2A9BF58600C6ED88 /* Fonts */,
 				E1C978EF2A9B5A09003BDC4A /* Assets.xcassets */,
 			);
