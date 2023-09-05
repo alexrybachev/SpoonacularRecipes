@@ -13,7 +13,8 @@ class StorageManager {
     
     static let shared = StorageManager()
     
-    let realm = try! Realm()
+    private let realm = try! Realm()
+    private var recipes: Results<RecipeInfoRealm>!
     
     private init() {}
     
@@ -35,6 +36,11 @@ class StorageManager {
         try! realm.write {
             realm.add(recipe)
         }
+    }
+    
+    func read(completion: @escaping(Results<RecipeInfoRealm>) -> Void) {
+        recipes = realm.objects(RecipeInfoRealm.self)
+        completion(recipes)
     }
     
 }
