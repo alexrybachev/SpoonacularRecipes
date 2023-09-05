@@ -11,13 +11,10 @@ class SeeAllViewController: UIViewController {
 
     var seeAllTableView = UITableView()
     
-    var category: String?
-    var isSorted: Bool?
-    
     var recipesInList: [RecipeInfo] = []
     
     // MARK: - Private Properties
-    private let presenter: SeeAllViewOutput
+    private var presenter: SeeAllViewOutput
     
     private lazy var collectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: createLayout())
@@ -43,6 +40,7 @@ class SeeAllViewController: UIViewController {
         view.backgroundColor = .white
         seeAllTableView.reloadData()
         setupUI()
+        getPopularRecipes()
     }
     
     // MARK: - Private methods
@@ -100,9 +98,43 @@ extension SeeAllViewController: UICollectionViewDataSource {
 }
 
 extension SeeAllViewController: SeeAllViewInput {
+    func getPopularRecipes() {
+        DispatchQueue.main.async {
+            self.collectionView.reloadData()
+        }
+    }
+    func getRecipes() {
+        presenter.networkManager.getPopularRecipes { result in
+            switch result {
+            case .success(let results):
+                if let recipes = results.results {
+                    self.presenter.trendingNowRecipes = recipes
+                    DispatchQueue.main.async {
+                        self.collectionView.reloadData()
+                    }
+                }
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+        presenter.networkManager.getRandomRecipes { result in
+            switch result {
+            case .success(let results):
+                if let recipes = results.recipes {
+                    self.presenter.recentRecipe = recipes
+                    DispatchQueue.main.async {
+                        self.collectionView.reloadData()
+                    }
+                }
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
+
+    
     func updateData(with recipeInfoModel: [RecipeInfo]) {
         
     }
-    
     
 }

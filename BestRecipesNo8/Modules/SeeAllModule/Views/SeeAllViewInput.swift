@@ -9,4 +9,5 @@ import Foundation
 
 protocol SeeAllViewInput: AnyObject {
     func updateData(with : [RecipeInfo])
+    func getPopularRecipes()
 }

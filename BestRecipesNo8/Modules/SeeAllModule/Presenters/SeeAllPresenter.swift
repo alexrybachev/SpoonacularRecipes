@@ -10,6 +10,10 @@ import Foundation
 final class SeeAllPresenter {
     weak var view: SeeAllViewInput?
     private let router: SeeAllRouterInput
+    var networkManager = NetworkManager.shared
+    var popularCategoryRecipes: [SearchRecipe] = []
+    var trendingNowRecipes: [SearchRecipe] = []
+    var recentRecipe: [RecipeInfo] = []
    // private let settingsManager: SettingsManagerProtocol
 
     init(router: SeeAllRouterInput) {
@@ -20,16 +24,31 @@ final class SeeAllPresenter {
 }
 
 extension SeeAllPresenter: SeeAllViewOutput {
-    func saveButtonTapped() {
-        //
-    }
-    
-    func fetchData(for category: String) {
-        //
-    }
+
     func cellTapped() {
         self.router.routeToRecipeDetailScreen()
     }
     
+    func saveButtonTapped() {
+        //
+    }
+    
+    func fetchData(mealType: String) {
+        networkManager.getRecipesWithMealType(for: mealType) { result in
+            switch result {
+            case .success(let recipes):
+                self.popularCategoryRecipes =  recipes.results ?? []
+                guard let view = self.view else { return }
+                print("Популярная категория: \(self.popularCategoryRecipes)")
+                view.getPopularRecipes()
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+        
 
-}
+        }
+        
+        
+    }
+

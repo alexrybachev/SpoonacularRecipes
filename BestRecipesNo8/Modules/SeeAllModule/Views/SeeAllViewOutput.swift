@@ -8,7 +8,11 @@
 import Foundation
 
 protocol SeeAllViewOutput {
-    func fetchData(for category: String)
+    var networkManager: NetworkManager { get set }
+    var trendingNowRecipes: [SearchRecipe] { get set }
+    var recentRecipe: [RecipeInfo] { get set }
+    
+    func fetchData(mealType: String)
     func cellTapped()
     func saveButtonTapped()
 }
