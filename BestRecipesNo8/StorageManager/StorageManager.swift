@@ -32,9 +32,9 @@ class StorageManager {
     }
     
     func save(recipe: RecipeInfoRealm) {
-        
+        try! realm.write {
+            realm.add(recipe)
+        }
     }
-    
-    
     
 }
