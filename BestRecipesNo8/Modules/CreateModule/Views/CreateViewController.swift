@@ -90,7 +90,11 @@ class CreateViewController: UIViewController {
         
     // MARK: - Properties For Realm
     
+    private var rows = 1
+    private var imageData = Data()
     private var titleNewRecipe = ""
+//    private var serves = "0"
+//    private var cookTime = "0 min"
     private var ingredients: [String: String] = [:]
     
     // MARK: - Life View Cycle
@@ -100,6 +104,7 @@ class CreateViewController: UIViewController {
         setupUI()
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+        createTemData()
     }
     
     // MARK: - Private Methods
@@ -152,6 +157,12 @@ class CreateViewController: UIViewController {
         cookTimeView.button.addTarget(self, action: #selector(cookTimeViewButtonTapped), for: .touchUpInside)
     }
 
+    private func createTemData() {
+        DataManager.shared.createTempData {
+            print("test")
+        }
+    }
+    
     // MARK: - Objc Methods
     
     @objc func addImageButtonTapped() {
@@ -183,12 +194,16 @@ class CreateViewController: UIViewController {
     }
     
     @objc func deleteIngredientButtonTapped(_ sender: UIButton) {
-        print(sender.tag)
-        if (ingredients.count + 2) != 2 {
-            let index = sender.tag
-            let indexPath = IndexPath(row: index, section: 0)
-            tableView.deleteRows(at: [indexPath], with: .automatic)
-        }
+        
+        guard let cell = sender.superview?.superview as? IngredientTableViewCell else { return }
+        guard let table = cell.superview as? UITableView else { return }
+        guard let indexPath = table.indexPath(for: cell) else { return }
+        
+        guard let ingredient = cell.nameIngredient.text else { return }
+        ingredients[ingredient] = nil
+        
+        rows -= 1
+        tableView.deleteRows(at: [indexPath], with: .automatic)
     }
     
     // Keyboard
@@ -226,7 +241,7 @@ class CreateViewController: UIViewController {
 extension CreateViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        ingredients.count + 2
+        rows
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -269,19 +284,9 @@ extension CreateViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        
-//        numberOfRows += 1
-        
-        let indexRow = tableView.numberOfRows(inSection: 0) - 1
-        print("indexRow: \(indexRow)")
-        
-        tableView.insertRows(at: [indexPath], with: .right)
-        tableView.reloadData()
-        
-//        if indexPath.row == indexRow {
-//            guard let ingredientCell = tableView.cellForRow(at: indexPath) as? IngredientTableViewCell else { return }
-//        }
-        
+        rows += 1
+        tableView.insertRows(at: [indexPath], with: .automatic)
+//        tableView.reloadData()
     }
 
 }
@@ -290,15 +295,12 @@ extension CreateViewController: UITableViewDelegate {
 
 extension CreateViewController: UITextFieldDelegate {
     
-    
     func textFieldDidBeginEditing(_ textField: UITextField) {
-//        print(#function)
         activeTextField = textField
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        print(#function)
-        
+ 
         // название рецепта
         if textField.tag == 3 {
             guard let text = textField.text, !text.isEmpty else {
@@ -327,16 +329,10 @@ extension CreateViewController: UITextFieldDelegate {
                 return true
             }
             guard let cell = textField.superview?.superview as? IngredientTableViewCell else { return true }
-            guard let table = cell.superview as? UITableView else { return true }
-            guard let indexPath = table.indexPath(for: cell) else { return true }
             guard let ingredient = cell.nameIngredient.text else { return true }
             print(ingredient)
             ingredients[ingredient] = text
         }
-        
-        
-        print("название рецепта: \(titleNewRecipe)")
-        print("ингридиенты: \(ingredients)")
         
         activeTextField = nil
 
@@ -390,6 +386,9 @@ extension CreateViewController: UIImagePickerControllerDelegate & UINavigationCo
 //        guard let imageData = UIImageJPEGRepresentation(image) else { return }
         
         self.imageView.image = image
+        if let imageData = image.pngData() {
+            self.imageData = imageData
+        }
         
         let imageName = UUID().uuidString
         let imagePath = getDocumentsDirectory().appendingPathComponent(imageName)

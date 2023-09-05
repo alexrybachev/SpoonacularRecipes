@@ -43,6 +43,11 @@ struct RecipeInfo: Codable {
         }
     }
     
+    var ingredAndtime: String {
+        guard let inred = extendedIngredients?.count, let cookTime = preparationMinutes else { return "0 ingredients | 0 min" }
+        return "\(inred) Ingredients | \(cookTime) min"
+    }
+    
     var instuctionsLabel: String {
         var result: String = ""
         guard let instructions = analyzedInstructions?.first else { return "" }
