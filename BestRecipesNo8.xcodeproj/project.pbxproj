@@ -15,7 +15,7 @@
 		28344DBC2A9E7955000D7554 /* SeeAllBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28344DBB2A9E7955000D7554 /* SeeAllBuilder.swift */; };
 		28344DBE2A9E7988000D7554 /* SeeAllPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28344DBD2A9E7988000D7554 /* SeeAllPresenter.swift */; };
 		28344DC02A9E79C5000D7554 /* SeeAllRouterInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28344DBF2A9E79C5000D7554 /* SeeAllRouterInput.swift */; };
-		28344DC22A9E79CF000D7554 /* SeeAllRouterOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28344DC12A9E79CF000D7554 /* SeeAllRouterOutput.swift */; };
+		28344DC22A9E79CF000D7554 /* SeeAllViewRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28344DC12A9E79CF000D7554 /* SeeAllViewRouter.swift */; };
 		28344DC42A9F72B4000D7554 /* UIImage + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28344DC32A9F72B4000D7554 /* UIImage + Extension.swift */; };
 		283A2D5B2A9D333000A70257 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 283A2D5A2A9D333000A70257 /* Endpoint.swift */; };
 		283A2D5D2A9D334F00A70257 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 283A2D5C2A9D334F00A70257 /* API.swift */; };
@@ -121,7 +121,7 @@
 		28344DBB2A9E7955000D7554 /* SeeAllBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeeAllBuilder.swift; sourceTree = "<group>"; };
 		28344DBD2A9E7988000D7554 /* SeeAllPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeeAllPresenter.swift; sourceTree = "<group>"; };
 		28344DBF2A9E79C5000D7554 /* SeeAllRouterInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeeAllRouterInput.swift; sourceTree = "<group>"; };
-		28344DC12A9E79CF000D7554 /* SeeAllRouterOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeeAllRouterOutput.swift; sourceTree = "<group>"; };
+		28344DC12A9E79CF000D7554 /* SeeAllViewRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeeAllViewRouter.swift; sourceTree = "<group>"; };
 		28344DC32A9F72B4000D7554 /* UIImage + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage + Extension.swift"; sourceTree = "<group>"; };
 		283A2D5A2A9D333000A70257 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
 		283A2D5C2A9D334F00A70257 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
@@ -247,7 +247,7 @@
 			isa = PBXGroup;
 			children = (
 				28344DBF2A9E79C5000D7554 /* SeeAllRouterInput.swift */,
-				28344DC12A9E79CF000D7554 /* SeeAllRouterOutput.swift */,
+				28344DC12A9E79CF000D7554 /* SeeAllViewRouter.swift */,
 			);
 			path = Routers;
 			sourceTree = "<group>";
@@ -886,7 +886,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				28344DC22A9E79CF000D7554 /* SeeAllRouterOutput.swift in Sources */,
+				28344DC22A9E79CF000D7554 /* SeeAllViewRouter.swift in Sources */,
 				286297FF2AA7A784004690C2 /* ReuseIdentifierProtocol.swift in Sources */,
 				283A2D5F2A9D336400A70257 /* NetworkManager.swift in Sources */,
 				286297C22AA79C88004690C2 /* SeeAllModel.swift in Sources */,
