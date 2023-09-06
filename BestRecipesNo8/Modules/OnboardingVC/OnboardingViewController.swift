@@ -39,9 +39,10 @@ class OnboardingViewController: UIViewController {
             width: Double(Int(view.bounds.width) * background.count),
             height: Double(view.bounds.height)
         )
+        scrollView.bounces = false //не получится протащить картинку так, чтобы стало видно черную область
+        scrollView.contentInsetAdjustmentBehavior = .never //позволяет игнорировать safe area insets
         return scrollView
     }()
-    
     
     private lazy var pageControl: UIPageControl = {
         let pageControl = UIPageControl()
@@ -59,7 +60,6 @@ class OnboardingViewController: UIViewController {
         for i in 0..<background.count {
             let imageView = UIImageView(image: background[i])
             imageView.contentMode = .scaleAspectFill
-            imageView.setGradientColor(topColor: .clear, bottomColor: .black)
             array.append(imageView)
         }
         return array
@@ -67,28 +67,20 @@ class OnboardingViewController: UIViewController {
     
     lazy var titleLabel: UILabel = {
         let label = UILabel()
-        label.text = "Recipes from"
+        let string = NSMutableAttributedString(string: "Recipes from all over the World")
+        string.setColorForText("over the World", with: .threeRDColor)
+        label.attributedText = string
         label.textColor = .whiteColor
-        label.font = .poppinsBold(size: 52)
-        label.numberOfLines = 0
-        label.textAlignment = .center
-        return label
-    }()
-    
-    lazy var subtitle1: UILabel = {
-        let label = UILabel()
-        label.text = "all over the World"
-        label.textColor = .whiteColor
-        label.font = .poppinsBold(size: 30)
+        label.font = .poppinsBold(size: 40)
         label.numberOfLines = 0
         label.textAlignment = .center
         return label
     }()
     
     private var background = [
-        UIImage(named: "2"),
-        UIImage(named: "3"),
-        UIImage(named: "4")
+        UIImage(named: "OnboardingPage1"),
+        UIImage(named: "OnboardingPage2"),
+        UIImage(named: "OnboardingPage3")
     ]
     
     // MARK: - Lifecycle
@@ -96,8 +88,8 @@ class OnboardingViewController: UIViewController {
         super.viewDidLoad()
         setupHierarchy()
         
-        let tabBarC = self.tabBarController?.tabBar
-        tabBarC?.isHidden = true
+//        let tabBarC = self.tabBarController?.tabBar
+//        tabBarC?.isHidden = true
         navigationController?.navigationBar.isHidden = true
     }
     
@@ -145,25 +137,28 @@ extension OnboardingViewController: UIScrollViewDelegate {
         
         switch pageControl.currentPage {
         case 0:
+            let string = NSMutableAttributedString(string: "Recipes from all over the World")
+            string.setColorForText("over the World", with: .threeRDColor)
             skipButton.isHidden = false
             nextButton.setTitle("Continue", for: .normal)
             nextButton.addTarget(self, action: #selector(nextPage), for: .touchUpInside)
-            subtitle1.text = "over the World"
-            titleLabel.text = "Recipes from all"
+            titleLabel.attributedText = string
             
         case 1:
+            let string = NSMutableAttributedString(string: "Recipes with each and every detail")
+            string.setColorForText("each and every detail", with: .threeRDColor)
             skipButton.isHidden = false
             nextButton.setTitle("Continue", for: .normal)
             nextButton.addTarget(self, action: #selector(nextPage), for: .touchUpInside)
-            subtitle1.text = "each and every detail"
-            titleLabel.text = "Recipes with"
+            titleLabel.attributedText = string
             
         default:
+            let string = NSMutableAttributedString(string: "Cook it now or save it for later")
+            string.setColorForText("save it for later", with: .threeRDColor)
             skipButton.isHidden = true
             nextButton.setTitle("Start Cooking", for: .normal)
             nextButton.addTarget(self, action: #selector(pushViewController), for: .touchUpInside)
-            subtitle1.text = "save it for later"
-            titleLabel.text = "Cook it now or"
+            titleLabel.attributedText = string
         }
     }
 }
@@ -172,7 +167,7 @@ extension OnboardingViewController: UIScrollViewDelegate {
 extension OnboardingViewController {
     
     private func addSubViews() {
-        let views: [UIView] = [onboardingScrollView, nextButton, pageControl, titleLabel, subtitle1, skipButton]
+        let views: [UIView] = [onboardingScrollView, nextButton, pageControl, titleLabel, skipButton]
         views.forEach { self.view.addSubview($0) }
     }
     
@@ -198,14 +193,8 @@ extension OnboardingViewController {
             make.centerX.equalToSuperview()
         }
         
-        subtitle1.snp.makeConstraints { make in
-            make.bottom.equalTo(pageControl.snp.top).offset(-173)
-            make.leading.equalTo(view.safeAreaLayoutGuide.snp.leading).offset(40)
-            make.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailing).offset(-52)
-        }
-        
         titleLabel.snp.makeConstraints { make in
-            make.bottom.equalTo(subtitle1.snp.top).offset(-10)
+            make.bottom.equalTo(pageControl.snp.top).offset(-10)
             make.leading.equalTo(view.safeAreaLayoutGuide.snp.leading).offset(53)
             make.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailing).offset(-74)
         }
