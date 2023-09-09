@@ -8,7 +8,7 @@
 import Foundation
 
 protocol SeeAllViewOutput {
-    var trendingNowRecipes: [RecipeInfo] { get }
+    func fetchData(for category: String)
     func cellTapped()
     func saveButtonTapped()
 }

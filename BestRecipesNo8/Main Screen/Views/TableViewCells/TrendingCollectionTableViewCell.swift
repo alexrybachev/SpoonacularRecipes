@@ -12,7 +12,6 @@ final class TrendingCollectionTableViewCell: UITableViewCell {
     // MARK: Properties:
     
     private var trendingNowRecipes: [RecipeInfo] = []
-    private var presenter: PopularCategoryDelegate!
     
     // MARK: - UI Elements
     private lazy var recipesCollectionView: UICollectionView = {
@@ -51,9 +50,8 @@ final class TrendingCollectionTableViewCell: UITableViewCell {
         contentView.addSubview(recipesCollectionView)
     }
     
-    func configureCell(recipes: [RecipeInfo], presenter: PopularCategoryDelegate) {
+    func configureCell(recipes: [RecipeInfo]) {
         self.trendingNowRecipes = recipes
-        self.presenter = presenter
         recipesCollectionView.reloadData()
     }
     
@@ -78,8 +76,7 @@ extension TrendingCollectionTableViewCell: UICollectionViewDelegateFlowLayout, U
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TrendingCategoryCell.reuseIdentifier, for: indexPath) as? TrendingCategoryCell else { return UICollectionViewCell() }
-
-        cell.configureCell(at: trendingNowRecipes[indexPath.row], delegate: presenter)
+        cell.configureCell(at: trendingNowRecipes[indexPath.row])
             return cell
     }
     

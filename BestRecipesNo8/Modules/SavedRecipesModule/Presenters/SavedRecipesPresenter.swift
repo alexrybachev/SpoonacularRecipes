@@ -7,36 +7,15 @@
 
 import Foundation
 
-final class SavedRecipesPresenter: SavedRecipesViewOutput {
-
+final class SavedRecipesPresenter {
     
-    
-    //MARK: - Properties
     weak var view: SavedRecipesViewInput?
-    
     private let router: SavedRecipesRouterInput
-    
-    init(router: SavedRecipesRouterInput) {
+    private let settingsManager: SettingsManagerProtocol
+
+    init(router: SavedRecipesRouterInput,settingsManager: SettingsManagerProtocol) {
         
         self.router = router
-    }
-    
-    //MARK: - UserDefaults
-    var defaults: UserDefaults {
-        get { return UserDefaults.standard }
-        set { newValue.set(savedRecipes, forKey: "savedRecipes") }
-    }
-    
-    var savedRecipes: [RecipeInfo] {
-        get { return defaults.array(forKey: "savedRecipes") as? [RecipeInfo] ?? [] }
-        set {
-            defaults.set(newValue, forKey: "savedRecipes")
-        }
-    }
-    
-    //MARK: - Methods
-    func removeRecipe(at index: Int) {
-        savedRecipes.remove(at: index)
-        defaults.set(savedRecipes, forKey: "savedRecipes")
+        self.settingsManager = settingsManager
     }
 }

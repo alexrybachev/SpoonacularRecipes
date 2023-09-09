@@ -10,7 +10,8 @@ import UIKit
 final class ProfileBuilder {
     static func createProfileModule() -> UIViewController {
         let router = ProfileViewRouter()
-        let presenter = ProfilePresenter(router: router)
+        let settingsManager = SettingsManager()
+        let presenter = ProfilePresenter(router: router, settingsManager: settingsManager)
         let view = ProfileView(presenter: presenter)
         
         presenter.view = view

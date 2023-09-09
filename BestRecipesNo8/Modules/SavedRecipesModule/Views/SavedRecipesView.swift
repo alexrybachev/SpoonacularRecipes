@@ -11,7 +11,7 @@ import SnapKit
 final class SavedRecipesView: UIViewController {
     
     private let presenter: SavedRecipesPresenter
-    private var recipes: [RecipeInfo] = []
+    private let recipes = SavedRecipeModel.savedRecipes
     
     // MARK: - Views
     private lazy var scrollView: UIScrollView = _scrollView
@@ -26,7 +26,6 @@ final class SavedRecipesView: UIViewController {
     // MARK: - Init
     init(presenter: SavedRecipesPresenter) {
         self.presenter = presenter
-      
         heightOfCollectionView = (200 + Int(minimumSpaceBetweenCells)) * recipes.count
         super.init(nibName: nil, bundle: nil)
     }
@@ -41,7 +40,6 @@ final class SavedRecipesView: UIViewController {
         view.backgroundColor = .white
         addSubviews()
         applyConstraints()
-      
     }
     
     // MARK: - Subviews
@@ -102,10 +100,10 @@ extension SavedRecipesView: UICollectionViewDataSource {
         
         let recipe = recipes[indexPath.row]
         cell.updateRecipeData(
-            image: recipe.image,
-            rating: recipe.aggregateLikes,
-            title: recipe.title,
-            time: recipe.preparationMinutes
+            image: recipe.recipeImage,
+            rating: recipe.rating,
+            title: recipe.recipeName,
+            time: recipe.timeSaving
         )
         
         return cell
@@ -116,11 +114,6 @@ extension SavedRecipesView: SavedRecipesViewInput {
     func openSavedRecipes() {
         print("Saved recipes are opened")
     }
-    
-    func removeRecipe(at index: Int) {
-        presenter.removeRecipe(at: index)
-           // Update the UI to reflect the updated savedRecipes array
-       }
 }
 
 // MARK: - Extension for setup elements

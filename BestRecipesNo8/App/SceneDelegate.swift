@@ -19,22 +19,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         //todo проверяем, показывали ли уже Onboarding (UserDefaults)
         //Если да, то в rootViewController надо определить CustomTabBar()
+                let tabbarVC = CustomTabBar()
+                let navigationVC = UINavigationController(rootViewController: tabbarVC)
         //Если нет, то в rootViewController надо определить StartBuilder.createStartModule()
-        let tabbarVC = CustomTabBar()
-        let navigationVC = isShowOnboarding() ? UINavigationController(rootViewController: StartViewController()) : UINavigationController(rootViewController: tabbarVC)
+//        let navigationVC = UINavigationController(rootViewController: StartBuilder.createStartModule())
         
         navigationVC.setupNavigationBar()
         window?.rootViewController = navigationVC
-    }
-    
-    func isShowOnboarding() -> Bool {
-        var showOnboarding = true
-        
-        if let showOnboardingUDValue = UserDefaults.standard.object(forKey: "showOnboarding") {
-            showOnboarding = showOnboardingUDValue as! Bool
-        }
-        
-        return showOnboarding
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

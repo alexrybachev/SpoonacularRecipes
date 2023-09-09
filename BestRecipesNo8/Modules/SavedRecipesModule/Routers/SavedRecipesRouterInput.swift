@@ -7,6 +7,4 @@
 
 import Foundation
 
-protocol SavedRecipesRouterInput {
-    func routeToRecipeDetailScreen()
-}
+protocol SavedRecipesRouterInput {}

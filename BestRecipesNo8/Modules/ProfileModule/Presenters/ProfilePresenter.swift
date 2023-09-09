@@ -11,10 +11,12 @@ final class ProfilePresenter {
     
     weak var view: ProfileViewInput?
     private let router: ProfileRouterInput
+    private let settingsManager: SettingsManagerProtocol
 
-    init(router: ProfileRouterInput) {
+    init(router: ProfileRouterInput,settingsManager: SettingsManagerProtocol) {
+        
         self.router = router
-
+        self.settingsManager = settingsManager
     }
 }
 

@@ -10,10 +10,8 @@ import UIKit
 final class MainScreenViewController: UIViewController {
     
     var presenter: MainPresenterProtocol!
-    var popularCategoryDelegate: PopularCategoryDelegate!
+    var popularCategoryDelegate: PopularCategoryHeaderCellDelegate!
     
-    private var trendingCategoryCell: TrendingCategoryCell?
-
     //MARK: - UI Elementes:
     
     private lazy var titleLabel: UILabel = {
@@ -28,13 +26,7 @@ final class MainScreenViewController: UIViewController {
     
     private lazy var recipeSearchField: UISearchTextField = {
         let searchField = UISearchTextField()
-        searchField.backgroundColor = .whiteColor
-        searchField.textColor = .black
-        searchField.layer.borderColor = UIColor.lightGray.cgColor
-        searchField.layer.borderWidth = 1.0
-        searchField.layer.cornerRadius = 10.0
-        searchField.attributedPlaceholder = NSAttributedString(string: "Search recipes", attributes: [.foregroundColor: UIColor.lightGray])
-        
+        searchField.placeholder = "Search recipes"
         searchField.translatesAutoresizingMaskIntoConstraints = false
         return searchField
     }()
@@ -59,6 +51,7 @@ final class MainScreenViewController: UIViewController {
         super.viewDidLoad()
         setupUI()
         setupLayout()
+        presenter.getNewRecipes()
         getRecipes()
     }
     
@@ -121,7 +114,7 @@ extension MainScreenViewController: UITableViewDelegate, UITableViewDataSource {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: TrendingCollectionTableViewCell.reuseIdentifier, for: indexPath) as? TrendingCollectionTableViewCell else {
                 return UITableViewCell()
             }
-            cell.configureCell(recipes: presenter.trendingNowRecipes, presenter: popularCategoryDelegate)
+            cell.configureCell(recipes: presenter.trendingNowRecipes)
             return cell
             
         case 1:
@@ -176,10 +169,6 @@ extension MainScreenViewController: UITableViewDelegate, UITableViewDataSource {
 }
 
 extension MainScreenViewController: MainScreenViewControllerProtocol {
-    func updatePopularCategory() {
-        recipesTableView.reloadData()
-    }
-    
     func getPopularRecipes() {
         DispatchQueue.main.async {
             self.recipesTableView.reloadData()
@@ -190,10 +179,10 @@ extension MainScreenViewController: MainScreenViewControllerProtocol {
         presenter.networkManager.getTenPopularRecipes { result in
             switch result {
             case .success(let results):
-                let recipes = results
-                self.presenter.trendingNowRecipes = recipes
-                DispatchQueue.main.async {
-                    self.recipesTableView.reloadData()
+                let recipes = results 
+                    self.presenter.trendingNowRecipes = recipes
+                    DispatchQueue.main.async {
+                        self.recipesTableView.reloadData()
                     
                 }
             case .failure(let error):
