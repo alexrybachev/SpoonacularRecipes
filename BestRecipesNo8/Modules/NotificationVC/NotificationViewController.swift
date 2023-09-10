@@ -7,34 +7,17 @@
 
 import UIKit
 
-class NotificationViewController: UIViewController {
+class MainV: UIView {
     private lazy var backgroundView: UIImageView = {
         let imageViewBackground = UIImageView(frame: UIScreen.main.bounds)
         imageViewBackground.image = UIImage(named: "Vladimir")
         imageViewBackground.contentMode = .scaleAspectFit
         return imageViewBackground
     }()
-    
-    
-    // MARK: - LifeCycle
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        view.backgroundColor = .white
-        setupHierarchy()
-        setupLayout()
+    override init(frame: CGRect) {
+        super.init(frame: frame)
     }
-    
-    
-    // MARK: - Hierarchy
-    private func setupHierarchy() {
-        view.addSubview(backgroundView)
-    }
-    
-    // MARK: - Layout
-    private func setupLayout() {
-        backgroundView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
-        }
-
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 }

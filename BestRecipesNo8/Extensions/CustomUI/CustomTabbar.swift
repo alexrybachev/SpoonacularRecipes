@@ -38,7 +38,7 @@ final class CustomTabBar: UITabBarController {
     private func assignTabBarModules() {
         let mainVC = MainScreenBuilder.createMainScreenViewController()
         let discoverVC = SavedRecipesBuilder.createSavedRecipesModule()
-        let notificationVC = NotificationViewController()
+        let notificationVC = SearchViewController()
         let profileVC = ProfileBuilder.createProfileModule()
         
         mainVC.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "main")?.withRenderingMode(.alwaysOriginal), selectedImage: UIImage(named: "mainSelect")?.withRenderingMode(.alwaysOriginal))
